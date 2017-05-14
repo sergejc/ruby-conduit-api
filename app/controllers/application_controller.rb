@@ -33,8 +33,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def  authenticate_user!(options = {})
-    head :unauthorized unless sign_in?
+  def authenticate_user!(options = {})
+    head :unauthorized unless signed_in?
   end
 
   def current_user
