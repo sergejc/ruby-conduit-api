@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   scope :api, defaults: { format: :json } do
     devise_for :users, controllers: { sessions: :sessions }, path_names: { sign_in: :login }
+
     resource :user, only: [:show, :update]
+    resources :profiles, param: :username, only: [:show]
+    resources :articles, param: :slug, except: [:edit, :new]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
