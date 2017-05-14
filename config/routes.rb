@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
     resource :user, only: [:show, :update]
     resources :profiles, param: :username, only: [:show]
-    resources :articles, param: :slug, except: [:edit, :new]
+    resources :articles, param: :slug, except: [:edit, :new] do
+      resource :favorite, only: [:create, :destroy]
+      resources :comments, only: [:create, :index, :destroy]
+    end
+    resources :tags, only: [:index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
